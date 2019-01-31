@@ -1,106 +1,48 @@
-# Blockchain.info Wallet [![Build Status](https://travis-ci.org/blockchain/My-Wallet-V3-Frontend.png?branch=master)](https://travis-ci.org/blockchain/My-Wallet-V3-Frontend) [![Coverage Status](https://coveralls.io/repos/blockchain/My-Wallet-V3-Frontend/badge.svg?branch=master&service=github)](https://coveralls.io/github/blockchain/My-Wallet-V3-Frontend?branch=master)
+#### Google Script Macro steps
+1. Create new spreadsheet on Google Sheet
 
-Be Your Own Bank at [blockchain.info/wallet](https://blockchain.info/wallet). Please [contact support](http://blockchain.zendesk.com/) if you have any issues using the wallet.
+    ````
+     (https://groups.google.com/forum/#!forum/cornerstone-platform)
+    ````
+    
+2. Import CSV file which you are going to add lat/long columns
 
-## Run the wallet on your own computer
+    ````
+    File menu / Import / Upload / Select a file from your computer 
+    ````
 
-The normal and easiest way to use our wallet is to go to [blockchain.info/wallet](https://blockchain.info/wallet). However if you like more control over the exact code that runs in your browser, you can download the source code and run the wallet from a simple server on your own machine. Here's how:
+    On `Import file` popup page:
 
- 1. Install [Node.js](http://nodejs.org/)
- 2. `git clone git@github.com:blockchain/My-Wallet-V3-Frontend.git -b v1.11.11 --single-branch --depth 1`
- 3. `make server`
+        Import location - Select `Replace current sheet`
+        
+        Separator type - Select `Detect automatically`
 
-Login to your existing wallet or create a new one at `http://localhost:8080/`.
+        Convert text to numbers and dates - Select `No`
 
-You can replace `v1.11.11` with any tagged version you like, but we recommend always using the latest [release](https://github.com/blockchain/My-Wallet-V3-Frontend/releases). The versions marked as pre-release have not gone through extensive internal testing yet.
+3. Create Script and Run
+    
+    Create
 
-Note that the wallet itself is still stored on Blockchain.info servers. It is encrypted with your password. The wallet also uses the Blockchain.info servers to show you your balance, notify you of new payments, submit transactions, etc.
+    ````
+    Tools menu / Script editor / Import code from `geo_script.gs` file / Edit project name(for example: Geocode)
+    ````
 
-## About
+    Run
 
-The frontend code in this repository uses AngularJS. The Bitcoin specific tasks are handled by [My-Wallet-V3](https://github.com/blockchain/My-Wallet-V3), which is included via Bower.
+    ````
+    Run menu / Run function / getGeocodingRegion / Review Permissions
+    ````
 
-## Develop
+    After script runs, `Geocode` will be created in menu.
 
-Make sure you have [Node.js](http://nodejs.org/) installed.
+4. Add/Fill columns for `Latitude` and `Longitude`
 
-You also need Sass (use `sudo` if you're not using a [Ruby version manager](https://rvm.io)):
-```sh
-gem install sass
-```
+    Add new two columns for lat/long next to Zip column.
 
-Install dependencies:
-```sh
-npm install
-```
+    Drag from the address to the newly created longitude column.
 
-Create a file called `.env` in the root of the project. Put the following in it:
+    Then:
 
-```
-ROOT_URL=https://blockchain.info
-```
-
-Optionally you can add:
-
-```
-AUTO_RELOAD=1
-WEB_SOCKET_URL=wss://ws.blockchain.info/inv
-API_DOMAIN=https://api.blockchain.info
-WALLET_HELPER_URL=http://localhost:8081
-```
-
-To inspect individual directives, run:
-
-```sh
-npm run start-parts
-```
-
-## Build
-
-Grunt watches and compiles the pug view templates and CSS. Keep it running:
-```sh
-grunt
-```
-
-## Test
-
-To run test and monitor for changes:
-```sh
-npm test
-```
-
-A coverage report is generated after you run the test for the first time. Just open `coverage/index.html` in your browser.
-
-## Run
-
-Run local http server:
-```sh
-npm start
-```
-
-Visit [localhost:8080](http://localhost:8080/).
-
-## Developing My-Wallet-V3
-
-If you are making changes to [My-Wallet-V3](https://github.com/blockchain/My-Wallet-V3) that you want to try out in the frontend, create a symlink:
-```sh
-rm My-Wallet-V3-Frontend/bower_components/blockchain-wallet/dist/my-wallet.js
-ln -s ../../../../My-Wallet-V3/dist/my-wallet.js My-Wallet-V3-Frontend/bower_components/blockchain-wallet/dist/my-wallet.js
-```
-
-To automatically login and go back to where you last were in the app after every page refresh, create a file `.env` and add `AUTO_RELOAD=1` to it.
-
-If you enable "handle bitcoin links" in your wallet settings, you can open bitcoin URI's like this one:
-
-    bitcoin:?address=1FeerpCgswvGRLVKme759C96DUBtf7SvA2?amount=0.01
-
-## Contribute
-
-Bug fixes and feedback on our code is always appreciated.
-
-## Security
-
-Security issues can be reported to us in the following venues:
-
- * Email: security@blockchain.info
- * Bug Bounty: https://www.crowdcurity.com/blockchain-info
+    ````
+    Geocode menu / Geocode Selected Cells(Address to Latitude, longitude)
+    ````
